@@ -85,8 +85,8 @@ def create_segments(labels, pos_scores, neg_scores):
                 'pos_count': np.zeros(n), 'neg_count': np.zeros(n)}
     j = -1
     for i, label in enumerate(labels):
-        if ((i == 0) or (pos_scores[i-1] != pos_scores[i])
-                     or (neg_scores[i-1] != neg_scores[i])):
+        if ((i== 0) or (not np.isclose(pos_scores[i-1],pos_scores[i]))
+                     or (not np.isclose(neg_scores[i-1],neg_scores[i]))): 
             j += 1
             segments['pos_score'][j] = pos_scores[i]
             segments['neg_score'][j] = neg_scores[i]
